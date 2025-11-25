@@ -50,7 +50,7 @@ def create_problem_response(title: str, status: int, detail: str) -> web.Respons
             detail=detail,
         ),
         status=status,
-        dumps=Problem.model_dump_json,
+        dumps=Problem.as_json,
     )
 
 

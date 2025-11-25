@@ -230,7 +230,7 @@ async def put_program_by_id(
     if program is None:
         raise ValueError("program is required")
 
-    data = program.model_dump_json(exclude_none=True, exclude_unset=True)
+    data = program.as_json()
 
     if custom_headers is None:
         custom_headers = {}

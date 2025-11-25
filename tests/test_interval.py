@@ -136,5 +136,5 @@ def test_interval_to_json() -> None:
 
     interval = Interval.model_validate_json(json_data)
 
-    result = interval.model_dump_json()
+    result = interval.as_json()
     assert result == json_data

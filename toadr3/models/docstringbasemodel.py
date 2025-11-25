@@ -27,3 +27,11 @@ class DocstringBaseModel(BaseModel):
     def __str__(self) -> str:
         """Return a string representation of the object."""
         return f"{self.__class__.__name__}({super().__str__()})"
+
+    def as_dict(self) -> dict[str, Any]:
+        """Return the model as a dictionary."""
+        return self.model_dump(exclude_unset=True, exclude_none=True)
+
+    def as_json(self) -> str:
+        """Return the model as a JSON string."""
+        return self.model_dump_json(exclude_unset=True, exclude_none=True)

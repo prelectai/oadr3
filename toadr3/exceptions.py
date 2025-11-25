@@ -95,5 +95,5 @@ class ToadrError(Exception):
         return ToadrError(
             message=message,
             status_code=status_code,
-            json_response=problem.model_dump(),
+            json_response=problem.as_dict(),
         )

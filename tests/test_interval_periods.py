@@ -78,6 +78,9 @@ def test_interval_period_to_json() -> None:
     result = ip.model_dump_json(exclude_defaults=True)
     assert result == '{"start":"2024-09-24T01:02:03Z","duration":"P1DT2H"}'
 
+    result = ip.as_json()
+    assert result == '{"start":"2024-09-24T01:02:03Z","duration":"P1DT2H"}'
+
 
 def test_interval_periods_sub_second_precision_in_json() -> None:
     """Test that the IntervalPeriod model can handle sub-second precision."""

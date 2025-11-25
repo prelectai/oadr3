@@ -55,9 +55,7 @@ def test_toadr_error_from_problem_with_details() -> None:
     assert error.message == "title: detail"
     assert error.status_code == 500
     assert error.json_response == {
-        "type": None,
         "title": "title",
         "status": 500,
         "detail": "detail",
-        "instance": None,
     }

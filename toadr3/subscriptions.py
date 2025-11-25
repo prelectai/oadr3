@@ -157,7 +157,7 @@ async def post_subscription(
 
     vtn_url = vtn_url.rstrip("/")
 
-    data = subscription.model_dump_json(exclude_none=True, exclude_unset=True)
+    data = subscription.as_json()
     headers["Content-Type"] = "application/json"
 
     async with session.post(f"{vtn_url}/subscriptions", headers=headers, data=data) as response:
@@ -314,7 +314,7 @@ async def put_subscription_by_id(
     if subscription is None:
         raise ValueError("subscription is required")
 
-    data = subscription.model_dump_json(exclude_none=True, exclude_unset=True)
+    data = subscription.as_json()
 
     if custom_headers is None:
         custom_headers = {}

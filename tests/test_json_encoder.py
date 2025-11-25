@@ -21,7 +21,7 @@ def test_json_encoder_report() -> None:
     data = create_report()
 
     report = Report.model_validate(data)
-    result = Report.model_dump(report, exclude_none=True, exclude_unset=True)
+    result = Report.as_dict(report)
 
     # for comparison, we expect datetime objects and not strings
     data["createdDateTime"] = from_iso(data["createdDateTime"])
@@ -38,7 +38,7 @@ def test_json_encoder_event() -> None:
     data = create_event()
 
     event = Event.model_validate(data)
-    result = Event.model_dump(event, exclude_none=True, exclude_unset=True)
+    result = Event.as_dict(event)
 
     # for comparison, we expect datetime objects and not strings
     data["createdDateTime"] = from_iso(data["createdDateTime"])
@@ -63,7 +63,7 @@ def test_json_encode_as_expected(model_class: type[BaseModel], model_data: dict[
     # 1. we expect only default values to be part of the final JSON
     # 2. we expect the 'objectType' field to be included in the final JSON
     instance = model_class.model_validate(model_data)
-    result = model_class.model_dump(instance, exclude_none=True, exclude_unset=True)
+    result = model_class.as_dict(instance)  # type: ignore[attr-defined]
 
     assert "objectType" not in model_data
     assert "objectType" in result

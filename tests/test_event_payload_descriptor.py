@@ -54,6 +54,11 @@ def test_event_payload_descriptor_correct_object_type() -> None:
     assert payload_descriptor.units is None
     assert payload_descriptor.currency is None
 
+    json = payload_descriptor.as_json()
+    assert json == (
+        '{"objectType":"EVENT_PAYLOAD_DESCRIPTOR","payloadType":"CONSUMPTION_POWER_LIMIT"}'
+    )
+
     json = payload_descriptor.model_dump_json()
     assert json == (
         '{"objectType":"EVENT_PAYLOAD_DESCRIPTOR",'
